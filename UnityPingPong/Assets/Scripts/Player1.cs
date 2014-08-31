@@ -11,4 +11,6 @@ public class Player1 : Player {
 	public override void Update(){
 		base.Update ();
 	}
+
+
 }

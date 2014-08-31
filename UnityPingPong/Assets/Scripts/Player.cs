@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-	public float positionZ = -10;
-
 
 	public Vector3 speedVector3 = new Vector3();
 
@@ -18,17 +16,22 @@ public class Player : MonoBehaviour {
 	public virtual void Update () {
 		// MousePosition
 		Vector3 mousePosition = Input.mousePosition;
-		mousePosition.z = 5;
+		mousePosition.z = 10;
 		// lastPos
 		Vector3 lastPos = this.gameObject.transform.position;
 		// CameraPosition
 		Vector3 positionOnScreen = Camera.main.ScreenToWorldPoint( mousePosition );
 		Vector3 pos = this.gameObject.transform.position;
+		// speed
+		speedVector3 = positionOnScreen-lastPos;
 		this.gameObject.transform.position = pos + ( positionOnScreen-pos ) * (0.25f*(1-Time.deltaTime));
 
-		// speed
-		speedVector3 = this.gameObject.transform.position-lastPos;
-
 		// Debug.Log( this.lastPosition- this.gameObject.transform.position );
+	}
+
+	void OnCollisionEnter( Collision col ){
+		if( col.gameObject.tag.Equals("Ball") ){
+			col.gameObject.BroadcastMessage("HitFromPlayer",this.speedVector3);
+		}
 	}
 }
