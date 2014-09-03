@@ -2,10 +2,14 @@
 using System.Collections;
 public class Ball : MonoBehaviour {
 
+	// effect prefav
+	public GameObject effectFire;
+
+
 	// speed
 	private float ballSpeedX = 2.0f;
 	private float ballSpeedY = 5.0f;
-	private float ballSpeedZ = -9.0f;
+	private float ballSpeedZ = -5.0f;
 
 	// 2d virtual force
 	public float forceX = 0.0f;
@@ -70,12 +74,16 @@ public class Ball : MonoBehaviour {
 
 			this.ballSpeedZ *= -1;
 			this.Update();
+
+			Instantiate( (GameObject)effectFire, gameObject.transform.position, Quaternion.identity );
 		}else if( tag.Equals("Player2")){
 
 
 
 			this.ballSpeedZ *= -1;
 			this.Update();
+
+			Instantiate( (GameObject)effectFire, gameObject.transform.position, Quaternion.identity );
 		}
 	}
 }
