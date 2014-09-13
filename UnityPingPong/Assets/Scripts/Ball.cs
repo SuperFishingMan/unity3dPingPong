@@ -2,10 +2,23 @@
 using System.Collections;
 public class Ball : MonoBehaviour {
 
+	// effect prefav
+	public GameObject effectFire;
+
+	// public
+	public float ballCurvePower = 2.0f;
+	public float ballSpeed = 5.0f;
+
+	// Stat
+	private int turn = 0;
+
+	// difficulty
+
+
 	// speed
 	private float ballSpeedX = 2.0f;
 	private float ballSpeedY = 5.0f;
-	private float ballSpeedZ = -9.0f;
+	private float ballSpeedZ = -5.0f;
 
 	// 2d virtual force
 	public float forceX = 0.0f;
@@ -54,8 +67,8 @@ public class Ball : MonoBehaviour {
 
 	public void HitFromPlayer( Vector3 speedVector3 ){
 		Debug.Log( speedVector3 );
-		this.secondForceX = -speedVector3.x*5;
-		this.secondForceY = -speedVector3.y*5;
+		this.secondForceX = -speedVector3.x*this.ballCurvePower;
+		this.secondForceY = -speedVector3.y*this.ballCurvePower;
 		// this.forceY += 0;//speedVector3.y * 5;
 	}
 
@@ -68,14 +81,20 @@ public class Ball : MonoBehaviour {
 		// Confrict Player1,2
 		if( tag.Equals( "Player1" )){
 
-			this.ballSpeedZ *= -1;
+			this.ballSpeedZ = this.ballSpeed;
+			this.ballSpeed += 0.25f;
+			this.ballCurvePower += 1.0f;
 			this.Update();
+
+			Instantiate( (GameObject)effectFire, gameObject.transform.position, Quaternion.identity );
 		}else if( tag.Equals("Player2")){
 
-
-
-			this.ballSpeedZ *= -1;
+			this.ballSpeedZ = -this.ballSpeed;
+			this.ballSpeed += 0.25f;
+			this.ballCurvePower += 1.0f;
 			this.Update();
+
+			Instantiate( (GameObject)effectFire, gameObject.transform.position, Quaternion.identity );
 		}
 	}
 }
