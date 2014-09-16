@@ -4,10 +4,14 @@ public class Ball : MonoBehaviour {
 
 	// effect prefav
 	public GameObject effectFire;
+	public GameObject effectDamage;
+
 
 	// public
 	public float ballCurvePower = 2.0f;
 	public float ballSpeed = 5.0f;
+
+	public Object[] sounds;
 
 	// Stat
 	private int turn = 0;
@@ -32,10 +36,15 @@ public class Ball : MonoBehaviour {
 
 	private float secondForceFriction = 0.98f;
 
+	public int life = 10;
+	public int turnCount = 0;
+
 
 	// Use this for initialization
 	void Start () {
 		Physics.gravity = Vector3.zero;
+
+		UpdateGUI();
 	}
 	
 	// Update is called once per frame
@@ -72,11 +81,38 @@ public class Ball : MonoBehaviour {
 		// this.forceY += 0;//speedVector3.y * 5;
 	}
 
+	private void UpdateGUI(){
+		GameObject go = GameObject.Find("UIText");
+		TextMesh tm = (TextMesh)go.GetComponent(typeof(TextMesh));
+		string ui = "Life:"+life+"\nTurn:"+turnCount;
+		tm.text = ui;
+	}
+
+	private void TurnAdd(){
+		turnCount ++;
+		UpdateGUI();
+	}
+	private void LifeMinus(){
+		life --;
+		if( life < 0 ){
+			Application.LoadLevel(0);
+		}else{
+			UpdateGUI();
+		}
+	}
+
 	void OnCollisionEnter( Collision col ){
 		string tag = col.gameObject.tag;
 		// Confrict of Wall
-		if( tag.Equals("WallGround") || tag.Equals("WallRoof") ){ this.ballSpeedY *= -1; }
-		else if( tag.Equals("WallLeft") || tag.Equals("WallRight")){ this.ballSpeedX *= -1; }
+		if( tag.Equals("WallGround") || tag.Equals("WallRoof") ){
+			this.ballSpeedY *= -1;
+			
+			//Singleton<SoundPlayer>.instance.playSE( wallHitSound );
+		}
+		else if( tag.Equals("WallLeft") || tag.Equals("WallRight")){
+			this.ballSpeedX *= -1;
+			//Singleton<SoundPlayer>.instance.playSE( wallHitSound );
+		}
 
 		// Confrict Player1,2
 		if( tag.Equals( "Player1" )){
@@ -86,6 +122,8 @@ public class Ball : MonoBehaviour {
 			this.ballCurvePower += 1.0f;
 			this.Update();
 
+			TurnAdd();
+
 			Instantiate( (GameObject)effectFire, gameObject.transform.position, Quaternion.identity );
 		}else if( tag.Equals("Player2")){
 
@@ -94,7 +132,23 @@ public class Ball : MonoBehaviour {
 			this.ballCurvePower += 1.0f;
 			this.Update();
 
+			TurnAdd();
+
 			Instantiate( (GameObject)effectFire, gameObject.transform.position, Quaternion.identity );
 		}
+
+		// Out
+		if( tag.Equals("Player1Wall") ){
+			Instantiate( (GameObject)effectDamage, gameObject.transform.position, Quaternion.identity );
+
+			transform.localPosition = new Vector3( 0.0f, 0.0f, 0.0f );
+
+
+			LifeMinus();
+
+		}else if( tag.Equals("Player2Wall") ){
+
+		}
+
 	}
 }

@@ -11,8 +11,13 @@ public class Cpu : Player {
 	// Use this for initialization
 	void Start () {
 		Debug.Log( this );
-		ball = GameObject.Find("Ball");
+
 		startZ = gameObject.transform.position.z;
+		FindBall();
+	}
+
+	public void FindBall(){
+		ball = GameObject.Find("Ball");
 	}
 	
 	public override void Update(){
@@ -20,8 +25,9 @@ public class Cpu : Player {
 		// Debug.Log (GameObject.Find ("Ball"));
 		// gameObject.transform.position = new Vector3( 
 
-		gameObject.transform.position = new Vector3( ball.transform.position.x, ball.transform.position.y, startZ );
-
+		if( ball ){
+			gameObject.transform.position = new Vector3( ball.transform.position.x, ball.transform.position.y, startZ );
+		}
 
 		// switch status
 

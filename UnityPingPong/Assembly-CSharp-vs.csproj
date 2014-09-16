@@ -46,12 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CubeOnCircle.cs" />
      <Compile Include="Assets\Scripts\BackgroundControl.cs" />
      <Compile Include="Assets\Scripts\Ball.cs" />
      <Compile Include="Assets\Scripts\BallWrapper.cs" />
      <Compile Include="Assets\Scripts\Button.cs" />
      <Compile Include="Assets\Scripts\Cpu.cs" />
+     <Compile Include="Assets\Scripts\CubeOnCircle.cs" />
      <Compile Include="Assets\Scripts\PartickeAutoDestroy.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Player1.cs" />
