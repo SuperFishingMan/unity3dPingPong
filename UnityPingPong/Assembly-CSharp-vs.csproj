@@ -52,10 +52,11 @@
      <Compile Include="Assets\Scripts\BallWrapper.cs" />
      <Compile Include="Assets\Scripts\Button.cs" />
      <Compile Include="Assets\Scripts\Cpu.cs" />
+     <Compile Include="Assets\Scripts\PartickeAutoDestroy.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Player1.cs" />
      <Compile Include="Assets\Scripts\Player2.cs" />
-     <Compile Include="Assets\TitleControl.cs" />
+     <Compile Include="Assets\Scripts\TitleControl.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

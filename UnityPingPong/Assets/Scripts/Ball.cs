@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 public class Ball : MonoBehaviour {
 
@@ -13,7 +13,7 @@ public class Ball : MonoBehaviour {
 	private int turn = 0;
 
 	// difficulty
-
+	// private
 
 	// speed
 	private float ballSpeedX = 2.0f;
@@ -54,7 +54,7 @@ public class Ball : MonoBehaviour {
 		forceX += secondForceX * Time.deltaTime;
 		forceY += secondForceY * Time.deltaTime;
 
-		Debug.Log( forceX );
+		// Debug.Log( forceX );
 		
 
 		// apply transform

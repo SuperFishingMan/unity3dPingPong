@@ -1,9 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CubeOnCircle.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Ball.cs">
     <Files>
+      <File FileName="Assets\PartickeAutoDestroy.cs" Line="13" Column="59" />
       <File FileName="Assets\CubeOnCircle.cs" Line="21" Column="9" />
-      <File FileName="Assets\Scripts\Button.cs" Line="26" Column="20" />
+      <File FileName="Assets\Scripts\Button.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Ball.cs" Line="83" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
